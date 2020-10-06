@@ -1,6 +1,10 @@
 name: Helper
 
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - ready_for_review
+        - unlocked
 
 jobs:
   instructions:
