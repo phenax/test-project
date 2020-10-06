@@ -1,23 +1,16 @@
 name: Helper
+
 on:
-  label:
-    types: [created, edited]
+  pull_request_target:
+    types:
+      - labeled
 
 jobs:
   instructions:
-    runs-on: ubuntu-latest
+    name: instructions
+    runs-on: ubuntu-18.04
     steps:
-      - run: echo "${{ github.event.label.name }}"
-      - name: Commenting
-        uses: unsplash/comment-on-pr@master
-        if: github.event.label.name == 'domain'
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Label Commenter
+        uses: peaceiris/actions-label-commenter@v1
         with:
-          msg: "Hello world"
-          check_for_duplicate_msg: false # TODO: Make this true
-# >
-            ### \"What do I do after this gets hosted?\"
-            #If you are using github pages to host your website,
-            #go to Settings > Github pages > Custom domain
-        # if: ${{ github.event.self.labels.*.name == 'domain' }}
+          github_token: ${{secrets.GITHUB_TOKEN}}
