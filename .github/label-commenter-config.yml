@@ -1,0 +1,13 @@
+labels:
+  - name: domain
+    labeled:
+      pr:
+        body: |
+          ## Wow
+          Hello there. General Kenobi
+          Wow
+  - name: stale
+    labeled:
+      pr:
+        body: This PR has been marked as stale. Closing pull request.
+        action: close
