@@ -1,12 +1,13 @@
 name: Helper
 on:
   label:
-    types: [created]
+    types: [created, edited]
 
 jobs:
   instructions:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ github.event.label.name }}"
       - name: Commenting
         uses: unsplash/comment-on-pr@master
         if: github.event.label.name == 'domain'
