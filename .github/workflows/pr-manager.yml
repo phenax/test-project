@@ -1,7 +1,7 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request,label]
+on: pull_request
 
 jobs:
   label:
@@ -13,11 +13,11 @@ jobs:
         repo-token: "${{secrets.GITHUB_TOKEN}}"
   instructions:
     runs-on: ubuntu-latest
+    needs: [label]
     steps:
       - name: Commenting instructions on pull request
         uses: unsplash/comment-on-pr@master
-        # if: ${{ github.event.self.labels.*.name == 'domain' }}
-        if: github.event_name == 'label' && github.event.label.name != 'domain'
+        if: github.event_name == 'label' && github.event.label.name == 'domain'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
@@ -26,3 +26,5 @@ jobs:
             If you are using github pages to host your website,
             go to Settings > Github pages > Custom domain
           check_for_duplicate_msg: true
+
+        # if: ${{ github.event.self.labels.*.name == 'domain' }}
