@@ -16,8 +16,12 @@ jobs:
     steps:
       - name: Commenting instructions on pull request
         uses: unsplash/comment-on-pr@master
+        if: github.event.pr.labels.*.name == 'domain'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          msg: "Check out this message!"
-          check_for_duplicate_msg: false
+          msg: >
+            ### \"What do I do after this gets hosted?\"
+            If you are using github pages to host your website,
+            go to Settings > Github pages > Custom domain
+          check_for_duplicate_msg: true
