@@ -1,4 +1,4 @@
-name: Maintainence
+name: Helper
 on:
   label:
     types: [created]
