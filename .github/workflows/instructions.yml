@@ -1,9 +1,6 @@
 name: Helper
 
-on:
-  pull_request: # _target
-    types:
-      - labeled
+on: [pull_request]
 
 jobs:
   instructions:
