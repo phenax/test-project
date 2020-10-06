@@ -1,7 +1,7 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: pull_request
+on: [pull_request,label]
 
 jobs:
   label:
@@ -16,7 +16,8 @@ jobs:
     steps:
       - name: Commenting instructions on pull request
         uses: unsplash/comment-on-pr@master
-        if: github.event.pr.labels.*.name == 'domain'
+        # if: ${{ github.event.self.labels.*.name == 'domain' }}
+        if: github.event_name == 'label' && github.event.label.name != 'domain'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
