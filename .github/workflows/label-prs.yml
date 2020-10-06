@@ -1,12 +1,23 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request]
+on: pull_request
 
 jobs:
   label:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v2
+    - name: Labelling pull request
+      uses: actions/labeler@v2
       with:
         repo-token: "${{secrets.GITHUB_TOKEN}}"
+  instructions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commenting instructions on pull request
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          msg: "Check out this message!"
+          check_for_duplicate_msg: false
