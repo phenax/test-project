@@ -14,9 +14,9 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const pr = context.payload.pull_request;
-            const { labels, number } = pr;
+            const { labels = [], number } = pr;
             console.log('---', labels);
-            if (labels.indexOf('domain') !== -1) {
+            if (labels.find(({ name }) => name === 'domain')) {
               await github.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
