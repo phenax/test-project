@@ -13,12 +13,12 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log('ctx', JSON.stringify(context.issue, 0, 2))
-            console.log('gh', typeof github.pulls.createComment)
-            console.dir(github.pulls)
+            console.log('ctx', JSON.stringify(context.issue, 0, 2));
+            console.log('gh', typeof github.pulls.createComment);
+            console.dir(github.pulls);
             await github.pulls.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: 'Testing'
-            })
+              body: 'Testing',
+            });
