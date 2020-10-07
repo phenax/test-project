@@ -1,13 +1,6 @@
 name: Helper
 
-on:
-  pull_request:
-    types:
-      - opened
-  #pull_request:
-    #types:
-      #- ready_for_review
-        #- unlocked
+on: pull_request
 
 jobs:
   instructions:
@@ -15,9 +8,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: Label Commenter
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-        run: echo "Hello world"
-        #uses: peaceiris/actions-label-commenter@v1.6
-        #with:
-          #github_token: ${{secrets.GITHUB_TOKEN}}
+      - name: Comment
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.pulls.createComment({
+              issue_number: context.pull.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Testing'
+            })
