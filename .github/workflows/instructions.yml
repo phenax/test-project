@@ -1,14 +1,20 @@
 name: Helper
 
-on: pull_request
+on:
+  pull_request:
+    types:
+      - closed
 
 jobs:
   instructions:
     name: instructions
     runs-on: ubuntu-18.04
+    if: 
     steps:
       - uses: actions/checkout@v2
+      - run: echo "BOOHOOOOO"
       - name: Comment
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
         uses: actions/github-script@v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -17,4 +23,5 @@ jobs:
             const { instructions } = require(`${process.env.GITHUB_WORKSPACE}/scripts/comment.js`);
             if (hasLabel(context, 'domain'))
               await instructions(context, github);
+      - run: echo "BOOHOOOOOhooo"
 
