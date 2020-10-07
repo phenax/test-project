@@ -15,11 +15,11 @@ If your domain points to a server you own, add \`domain-name.is-a.dev\` to your 
 
 
 ## Need support with your domain?
-If you are having trouble setting up your domain, [create an issue](https://github.com/is-a-dev/register/issues/new/choose) and pick the \`support\` template. Describe any issue you are facing there.
+If you are having trouble setting up your domain, [create an issue](https://github.com/is-a-dev/register/issues/new/choose) and pick the \`support\` template. Describe any issue you are facing there. I\'ll try my best to get back to you asap!
 
 
-## Love or hate the service?
-**Love it?** Leave it a star! Also consider donating so that I can keep this service running forever.
+## Love/Hate the service?
+**Love it?** Leave it a **star**! Also consider **[donating](https://github.com/is-a-dev/register#donations)** so that I can keep this service running forever.
 
 **Hate it?** Please leave your feedback by [creating an issue](https://github.com/is-a-dev/register/issues/new/choose). I\'d really like to keep improving this service for developers.
 `;
