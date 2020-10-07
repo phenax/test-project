@@ -1,3 +1,1 @@
 # test-project
-
-Hello world
