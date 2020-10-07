@@ -13,13 +13,8 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const pr = context.payload.pull_request;
-            const { labels = [], number } = pr;
-            if (labels.find(({ name }) => name === 'domain')) {
-              await github.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: number,
-                body: 'Testing',
-              });
-            }
+            const { hasLabel } = require(`${process.env.GITHUB_WORKSPACE}/scripts/helpers.js`);
+            const { instructions } = require(`${process.env.GITHUB_WORKSPACE}/scripts/comment.js`);
+            if (hasLabel(context, 'domain'))
+              await instructions(context, github);
+
