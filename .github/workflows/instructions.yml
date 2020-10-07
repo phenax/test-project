@@ -16,7 +16,7 @@ jobs:
             console.log('ctx', JSON.stringify(context.issue, 0, 2));
             console.log('gh', typeof github.pulls.createComment);
             console.dir(github.pulls);
-            await github.pulls.createComment({
+            await github.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
