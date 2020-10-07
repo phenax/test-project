@@ -1,6 +1,6 @@
 name: Helper
 
-on: [pull_request, issues]
+on: pull_request
 
 jobs:
   instructions:
@@ -13,12 +13,17 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log('ctx', JSON.stringify(context, 0, 2));
+            // console.log('ctx', JSON.stringify(context, 0, 2));
             // console.log('gh', github.pulls);
             // console.log('gh', github.issues);
-            await github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: 'Testing',
-            });
+            // context.issue.pull_request?.labels
+            const pr = context.issue.pull_request;
+            const { labels } = pr;
+            if (labels.indexOf('domain') !== -1) {
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: 'Testing',
+              });
+            }
