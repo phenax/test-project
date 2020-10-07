@@ -13,5 +13,5 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            console.log(JSON.stringify(context))
-            console.log(JSON.stringify(github))
+            console.log('ctx', JSON.stringify(context.issue, 0, 2))
+            console.log('gh', JSON.stringify(github.pulls))
