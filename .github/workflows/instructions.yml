@@ -3,8 +3,11 @@ name: Helper
 on:
   pull_request:
     types:
-      - ready_for_review
-        - unlocked
+      - opened
+  #pull_request:
+    #types:
+      #- ready_for_review
+        #- unlocked
 
 jobs:
   instructions:
